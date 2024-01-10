@@ -28,7 +28,7 @@ nas-bench-201
 ```bash
 cd zero-cost-nas
 
-python NAS_Bench_201.py
+python NAS_Bench_201.py --dataset 'cifar10/cifar100/ImageNet16-120'
 ```
 
 
@@ -49,7 +49,7 @@ and put the train folder in to ./zero-cost-nas/ZiCo/dataset/imagenet/
   ```
 
 2. Save json Meco value for MobileNet OFA on ImageNet1k:
-set path data set in mobilenet_OFA_eval_correlation_imagenet_1k.py as:
+set path dataset and path save json in mobilenet_OFA_org_paper.py as:
 ```bash
 path_data_imagenet = '/home/tuanvovan/MeCo/zero-cost-nas/ZiCo/dataset/imagenet'
 
@@ -61,7 +61,7 @@ python mobilenet_OFA_org_paper.py
 ````
 
 3. Compute correlation Meco score and Test-Accuracy and save json Meco value for MobileNet OFA on ImageNet1k:
-set path data set in mobilenet_OFA_eval_correlation_imagenet_1k.py as:
+set path dataset and path save json in mobilenet_OFA_eval_correlation_imagenet_1k.py as:
 ```bash
 path_data_imagenet = '/home/tuanvovan/MeCo/zero-cost-nas/ZiCo/dataset/imagenet'
 
@@ -71,6 +71,17 @@ path_save_json = "/home/tuanvovan/MeCo/zero-cost-nas/save_data.json"
 ```bash
 cd zero-cost-nas
 python mobilenet_OFA_eval_correlation_imagenet_1k.py
+````
+
+4. Save json Meco value for accross architecture design (MobileNetv2,Resnet18,Efficientnet-B0,ViT,MaxVit) on ImageNet1k:
+set path dataset and path save json in accross_specific_architecture_torch.py as:
+```bash
+path_data_imagenet = '/home/tuanvovan/MeCo/zero-cost-nas/ZiCo/dataset/imagenet'
+path_save_json = "/home/tuanvovan/MeCo/zero-cost-nas/save_data.json"
+````
+```bash
+cd zero-cost-nas
+python accross_specific_architecture_torch.py
 ````
 
 ## Reference
