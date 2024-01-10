@@ -23,11 +23,11 @@ nas-bench-201
 
 ## Usage/Examples
 
-### Correlation Experiment
+### Correlation Experiment on NAS-Bench201
 
 ```bash
-cd correlation
-python NAS_Bench_101.py
+cd zero-cost-nas
+
 python NAS_Bench_201.py
 ```
 
