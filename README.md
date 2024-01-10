@@ -1,4 +1,4 @@
-# MeCo: Zero-Cost Proxy for NAS Via Minimum Eigenvalue of Correlation on Feature Maps
+# Explore Meco
 
 ## Installation
 
