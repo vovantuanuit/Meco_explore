@@ -42,7 +42,7 @@ Due to the ImageNet-1k is to large, and we use one sample to compute Meco. There
 https://sutdapac-my.sharepoint.com/:u:/g/personal/vovan_tuan_sutd_edu_sg/EaWA3oLM575Nv_0mXoL7vlYBlhJ5IZvGc1YbjIjkavovUg?e=e5v6HM
 and put the train folder in to ./zero-cost-nas/ZiCo/dataset/imagenet/
 
-+ We need use full validation on ImageNet-1k, so we download Val folder of Imaage1k by scripts, and put the val folder in to the ./zero-cost-nas/ZiCo/dataset/imagenet/
++ We need use full validation on ImageNet-1k, so we download Val folder of Imagenet1k by scripts, and put the val folder in to the ./zero-cost-nas/ZiCo/dataset/imagenet/
   ```bash
 
 bash dowload_image1k.sh
