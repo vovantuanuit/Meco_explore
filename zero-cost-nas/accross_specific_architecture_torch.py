@@ -13,8 +13,8 @@ from timm import create_model
 
 
 path_save_json = '/home/tuanvovan/MeCo/zero-cost-nas/total_infor_meco_maxVIT_torch_image1k_pretraied_False.json'
-
-train_data, test_data, xshape, class_num = datasets.get_datasets('imagenet-1k', '/home/tuanvovan/MeCo/zero-cost-nas/ZiCo/dataset/imagenet', 0)
+path_data_imagenet = '/home/tuanvovan/MeCo/zero-cost-nas/ZiCo/dataset/imagenet'
+train_data, test_data, xshape, class_num = datasets.get_datasets('imagenet-1k', path_data_imagenet, 0)
 
 trainloader = torch.utils.data.DataLoader(
         train_data, batch_size=8, shuffle=True, num_workers=4)
