@@ -48,27 +48,29 @@ and put the train folder in to ./zero-cost-nas/ZiCo/dataset/imagenet/
   bash dowload_image1k.sh
   ```
 
-1. Run Zero-Cost-PT with appointed zero-cost proxy:
+2. Save json Meco value for MobileNet OFA on ImageNet1k:
+set path data set in mobilenet_OFA_eval_correlation_imagenet_1k.py as:
 ```bash
-cd exp_scripts
-bash zerocostpt_nb201_pipline.sh --metric [metric] --batch_size [batch_size] --seed [seed]
-```
-You can choice metric from `['snip', 'fisher', 'synflow', 'grad_norm', 'grasp', 'jacob_cov','tenas', 'zico', 'meco'] `
+path_data_imagenet = '/home/tuanvovan/MeCo/zero-cost-nas/ZiCo/dataset/imagenet'
 
-### Experiments on DARTS-CNN Space
+path_save_json = "/home/tuanvovan/MeCo/zero-cost-nas/save_data.json"
+````
+```bash
+cd zero-cost-nas
+python mobilenet_OFA_org_paper.py
+````
 
-#### 1. DARTS CNN Space
+3. Compute correlation Meco score and Test-Accuracy and save json Meco value for MobileNet OFA on ImageNet1k:
+set path data set in mobilenet_OFA_eval_correlation_imagenet_1k.py as:
+```bash
+path_data_imagenet = '/home/tuanvovan/MeCo/zero-cost-nas/ZiCo/dataset/imagenet'
+
+path_save_json = "/home/tuanvovan/MeCo/zero-cost-nas/save_data.json"
+````
 
 ```bash
-cd exp_scripts
-bash zerocostpt_darts_pipline.sh --metric [metric] --batch_size [batch_size] --seed [seed]
-```
-
-#### 2. DARTS Subspaces S1-S4
-
-````bash
-cd exp_scripts
-bash zerocostpt_darts_pipline.sh --metric [metric] --batch_size [batch_size] --seed [seed] --space [s1-s4]
+cd zero-cost-nas
+python mobilenet_OFA_eval_correlation_imagenet_1k.py
 ````
 
 ## Reference
