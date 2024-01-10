@@ -45,8 +45,8 @@ and put the train folder in to ./zero-cost-nas/ZiCo/dataset/imagenet/
 + We need use full validation on ImageNet-1k, so we download Val folder of Imagenet1k by scripts, and put the val folder in to the ./zero-cost-nas/ZiCo/dataset/imagenet/
   ```bash
 
-bash dowload_image1k.sh
-```
+  bash dowload_image1k.sh
+  ```
 
 1. Run Zero-Cost-PT with appointed zero-cost proxy:
 ```bash
