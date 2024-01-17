@@ -17,7 +17,7 @@ path_data_imagenet = '/home/tuanvovan/MeCo/zero-cost-nas/ZiCo/dataset/imagenet'
 
 net_save_path= "./MobileNet_OFA_1000arc_api_42_2.json"
 
-path_save_json = "./save_analysic_mecoropt_MobileOFA_2_16x16.json"
+path_save_json = "./save_analysic_mecorevised_MobileOFA_2_16x16.json"
 
 ofa_network = ofa_net('ofa_mbv3_d234_e346_k357_w1.0', pretrained=False)
 
@@ -64,7 +64,7 @@ for i,v in net_datas.items():
 
     # subnet.train()
     subnet.to(device)
-    measures, meco_layers,eigen_layers,layer_shape_C = get_score_Meco_16x16_opt_weight_result(subnet, x, y, device,1,16)
+    measures, meco_layers,eigen_layers,layer_shape_C = get_score_Meco_revised_result_matmul(subnet, x, y, device,1,16)
     # subnet = ofa_network.get_active_subnet(preserve_weight=True)
     # run_manager = RunManager(".tmp/eval_subnet", subnet, run_config, init=False)
     # assign image size: 128, 132, ..., 224
