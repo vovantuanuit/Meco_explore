@@ -107,6 +107,7 @@ python -m torch.distributed.launch --nproc_per_node=2 --use_env evolution.py --d
 --min-param-limits 5 --param-limits 7 --data-set EVO_IMNET --path-save-api './AutoFM_CVPR2022_API_5_7M.json' --num-net 1000
 ```
 The API with archtecture and accuracy saved at --path-save-api './AutoFM_CVPR2022_API_5_7M.json' --num-net 1000
+can get API at here: 
 
 Compute meco, meco_opt, meco_revised based oh API have saved: './AutoFM_CVPR2022_API_5_7M.json'
 
@@ -124,6 +125,8 @@ python evolution_meco.py --data-path '/home/tuanvovan/MeCo/zero-cost-nas/ZiCo/da
 
 The result json will saved at './AutoFM_CVPR_results.json'
 
+The json result when compute proxy at here: https://sutdapac-my.sharepoint.com/:f:/g/personal/vovan_tuan_sutd_edu_sg/EiVabX6uXaFCrBMUSjsZquIBWyGkNlqJLtVgFt-gJcEGcg?e=riyU1c
+
 2.Following AAAI24 paper:
 
 Get architecture and test-accuracy save as API:
@@ -137,6 +140,8 @@ python -m torch.distributed.launch --nproc_per_node=2 --use_env evolution.py --d
 --min-param-limits 1 --param-limits 12 --data-set EVO_IMNET --path-save-api './AutoFM_AAAI24_API.json' --num-net 500
 ```
 The API with archtecture and accuracy saved at --path-save-api './AutoFM_AAAI24_API.json' --num-net 500
+
+Can get the AutoFM_AAAI24_API at here: https://sutdapac-my.sharepoint.com/:u:/g/personal/vovan_tuan_sutd_edu_sg/EeqiPrBH6TxCknkWIneMjh4BJunkw0sgJkRrFC_jvQIdIQ?e=24qfyA
 
 Compute meco, meco_opt, meco_revised based oh API have saved: './AutoFM_AAAI24_API.json'
 
@@ -152,6 +157,8 @@ python evolution_meco.py --data-path '/home/tuanvovan/MeCo/zero-cost-nas/ZiCo/da
 --min-param-limits 1 --param-limits 12 --data-set EVO_IMNET --api './AutoFM_AAAI24_API.json' --zero-cost 'meco' --start 0 --end 125 --save-json './AutoFM_AAAI24_results.json'
 ```
 The result json will saved at './AutoFM_AAAI24_results.json'
+
+Can get the computed results at here: https://sutdapac-my.sharepoint.com/:f:/g/personal/vovan_tuan_sutd_edu_sg/ElsY5s1M4-RKvo_BuWDj2TABThJgT1Plb7Xj2da5lW1hug?e=HiguYS
 
 ### Compute DSS proxy:
 1. Compute dss proxy for VIT API benchmark have save base on CVPR: 
