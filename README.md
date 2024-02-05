@@ -124,7 +124,7 @@ python evolution_meco.py --data-path '/home/tuanvovan/MeCo/zero-cost-nas/ZiCo/da
 
 The result json will saved at './AutoFM_CVPR_results.json'
 
-2. 1. Following AAAI24 paper:
+2.Following AAAI24 paper:
 
 Get architecture and test-accuracy save as API:
 Change your Imanget1k path with --data-path 
