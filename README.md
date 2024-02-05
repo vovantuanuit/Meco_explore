@@ -3,9 +3,8 @@
 ## Installation
 
 ```
-Python >= 3.6
-PyTorch >= 2.0.0
-nas-bench-201
+conda env create -f environment.yml
+conda activate meco
 ```
 
 ## Preparation
@@ -47,31 +46,36 @@ and put the train folder in to ./zero-cost-nas/ZiCo/dataset/imagenet/
 
   bash dowload_image1k.sh
   ```
-
-2. Save json Meco value for MobileNet OFA on ImageNet1k:
-set path dataset and path save json in mobilenet_OFA_org_paper.py as:
+2. Get API net and test-accuracy MobileNet OFA on ImageNet1k:
+set path dataset and path save json in mobilenet_OFA_eval_correlation_imagnet_1k_for_API.py as:
 ```bash
 path_data_imagenet = '/home/tuanvovan/MeCo/zero-cost-nas/ZiCo/dataset/imagenet'
 
-path_save_json = "/home/tuanvovan/MeCo/zero-cost-nas/save_data.json"
+path_save_json_api = "./MobileNet_OFA_1000arc_api.json"
 ````
 ```bash
 cd zero-cost-nas
-python mobilenet_OFA_org_paper.py
-````
+python mobilenet_OFA_eval_correlation_imagnet_1k_for_API.py
+```
+
 
 3. Compute correlation Meco score and Test-Accuracy and save json Meco value for MobileNet OFA on ImageNet1k:
-set path dataset and path save json in mobilenet_OFA_eval_correlation_imagenet_1k.py as:
+set path dataset, path api and path save json in mobilenet_OFA_eval_correlation_imagenet_1k.py as:
 ```bash
 path_data_imagenet = '/home/tuanvovan/MeCo/zero-cost-nas/ZiCo/dataset/imagenet'
-
+net_api_save_path= './MobileNet_OFA_1000arc_api_42_3.json'
 path_save_json = "/home/tuanvovan/MeCo/zero-cost-nas/save_data.json"
 ````
 
 ```bash
 cd zero-cost-nas
-python mobilenet_OFA_eval_correlation_imagenet_1k.py
-````
+###mece base
+python mobilenet_OFA_eval_correlation_imagnet_1k_load_computemoce_base.py
+###mece opt
+python mobilenet_OFA_eval_correlation_imagnet_1k_load_computemoce_opt.py
+###mece revised
+python mobilenet_OFA_eval_correlation_imagnet_1k_load_computemoce_revised.py
+```
 
 4. Save json Meco value for accross architecture design (MobileNetv2,Resnet18,Efficientnet-B0,ViT,MaxVit) on ImageNet1k:
 set path dataset and path save json in accross_specific_architecture_torch.py as:
@@ -82,7 +86,10 @@ path_save_json = "/home/tuanvovan/MeCo/zero-cost-nas/save_data.json"
 ```bash
 cd zero-cost-nas
 python accross_specific_architecture_torch.py
-````
+```
+
+### Experiments on AutoFM
+
 
 ## Reference
 

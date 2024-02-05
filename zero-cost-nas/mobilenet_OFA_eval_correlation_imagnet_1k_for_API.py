@@ -17,9 +17,6 @@ path_data_imagenet = '/home/tuanvovan/MeCo/zero-cost-nas/ZiCo/dataset/imagenet'
 
 path_save_json_api = "./MobileNet_OFA_1000arc_api.json"
 
-path_save_json_meco = './MobileNet_OFA_1000arc_mecovalue.json'
-
-
 
 ofa_network = ofa_net('ofa_mbv3_d234_e346_k357_w1.0', pretrained=True)
 

@@ -15,7 +15,7 @@ from once_for_all.ofa.model_zoo import ofa_net
 from scipy import stats
 path_data_imagenet = '/home/tuanvovan/MeCo/zero-cost-nas/ZiCo/dataset/imagenet'
 
-net_save_path= "./MobileNet_OFA_1000arc_api_42_3.json"
+net_api_save_path= "./MobileNet_OFA_1000arc_api_42_3.json"
 
 path_save_json = "./save_analysic_mecobase_MobileOFA_identical_zero_api_3_test.json"
 
