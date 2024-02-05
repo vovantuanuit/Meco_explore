@@ -90,7 +90,22 @@ python accross_specific_architecture_torch.py
 ```
 can get the result json saved at here: https://sutdapac-my.sharepoint.com/:f:/g/personal/vovan_tuan_sutd_edu_sg/EkEO5RQtDt5PrsUpbxzldJ8BXlhEiOeNVSiTUCj9er-nFw?e=MGHniT
 ### Experiments on AutoFM
+1. Following CVPR22 paper:
 
+Get architecture and test-accuracy save as API:
+
+Dowloading the pretrained Autoformer Supernet at here: https://drive.google.com/drive/folders/1HqzY3afqQUMI6pJ5_BgR2RquJU_b_3eg
+
+Change your Imanget1k path with --data-path 
+```bash
+cd AutoFormer
+bash search_API_based_CVPR2022.sh
+or 
+python -m torch.distributed.launch --nproc_per_node=2 --use_env evolution.py --data-path '/home/tuanvovan/MeCo/zero-cost-nas/ZiCo/dataset/imagenet' --gp \
+--change_qk --relative_position --dist-eval --cfg ./experiments/supernet/supernet-T.yaml --resume ./supernet-tiny.pth \
+--min-param-limits 5 --param-limits 7 --data-set EVO_IMNET --path-save-api './AutoFM_CVPR2022_API_5_7M.json' --num-net 1000
+```
+The API with archtecture and accuracy saved at --path-save-api './AutoFM_CVPR2022_API_5_7M.json' --num-net 1000
 
 ## Reference
 
