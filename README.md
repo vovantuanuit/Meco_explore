@@ -107,7 +107,7 @@ python -m torch.distributed.launch --nproc_per_node=2 --use_env evolution.py --d
 --min-param-limits 5 --param-limits 7 --data-set EVO_IMNET --path-save-api './AutoFM_CVPR2022_API_5_7M.json' --num-net 1000
 ```
 The API with archtecture and accuracy saved at --path-save-api './AutoFM_CVPR2022_API_5_7M.json' --num-net 1000
-can get API at here: 
+can get API at here: https://sutdapac-my.sharepoint.com/:u:/g/personal/vovan_tuan_sutd_edu_sg/Ee95Cf3zmt9KmXngIpVma4ABaT6f8CuZBcB_ZcqURHfftg?e=07nzNz
 
 Compute meco, meco_opt, meco_revised based oh API have saved: './AutoFM_CVPR2022_API_5_7M.json'
 
