@@ -172,6 +172,7 @@ or
 python compute_dss_proxy.py --data-path '/home/tuanvovan/MeCo/zero-cost-nas/ZiCo/dataset/imagenet' --gp \
  --change_qk --relative_position --dist-eval --cfg './experiments/search_space/space-T.yaml' --output_dir './OUTPUT/search' --api path_to_CVPR_api --save-result-json './json_dss_proxy_CVPR.json'
 ```
+The compted dss proxy result json can get at here: https://sutdapac-my.sharepoint.com/:f:/g/personal/vovan_tuan_sutd_edu_sg/EicFu3XR8U9Asg0Ytr5Zg5YBXR-1H7qG86riv7if8YV2_w?e=bkb52j
 
 2. Compute dss proxy for VIT API benchmark have save base on AAAI: 
 AutoFM_AAAI24_API.json
@@ -183,11 +184,8 @@ bash compute_dss_proxy_AAAI_24.sh
 or 
 python compute_dss_proxy.py --data-path '/home/tuanvovan/MeCo/zero-cost-nas/ZiCo/dataset/imagenet' --gp \
  --change_qk --relative_position --dist-eval --cfg './experiments/search_space/space-T.yaml' --output_dir './OUTPUT/search' --api path_to_AAAI24_api --save-result-json './json_dss_proxy_AAAI24.json'
-
-
-
 ```
-
+The compted dss proxy result json can get at here: https://sutdapac-my.sharepoint.com/:f:/g/personal/vovan_tuan_sutd_edu_sg/Eodd5-wrC3hDo1IBwSF2vmABegXzwhkaoyZz7zXcxEuDkg?e=le5Evh
 
 ## Reference
 
