@@ -94,6 +94,7 @@ can get the result json saved at here: https://sutdapac-my.sharepoint.com/:f:/g/
 Dowloading the pretrained Autoformer Supernet at here: https://drive.google.com/drive/folders/1HqzY3afqQUMI6pJ5_BgR2RquJU_b_3eg
 
 1. Following CVPR22 paper:
+
 Get architecture and test-accuracy save as API:
 
 Change your Imanget1k path with --data-path 
@@ -124,6 +125,7 @@ python evolution_meco.py --data-path '/home/tuanvovan/MeCo/zero-cost-nas/ZiCo/da
 The result json will saved at './AutoFM_CVPR_results.json'
 
 2. 1. Following AAAI24 paper:
+
 Get architecture and test-accuracy save as API:
 Change your Imanget1k path with --data-path 
 ```bash
