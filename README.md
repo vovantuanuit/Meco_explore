@@ -147,12 +147,41 @@ Noted: For the compute meco, we can't compute meco for 500 in one process (will 
 cd AutoFormer
 bash compute_meco_AAAI.sh
 or 
-#!/bin/bash
 python evolution_meco.py --data-path '/home/tuanvovan/MeCo/zero-cost-nas/ZiCo/dataset/imagenet' --gp \
 --change_qk --relative_position --dist-eval --cfg ./experiments/supernet/supernet-AAAI.yaml --resume ./supernet-tiny.pth \
 --min-param-limits 1 --param-limits 12 --data-set EVO_IMNET --api './AutoFM_AAAI24_API.json' --zero-cost 'meco' --start 0 --end 125 --save-json './AutoFM_AAAI24_results.json'
 ```
 The result json will saved at './AutoFM_AAAI24_results.json'
+
+### Compute DSS proxy:
+1. Compute dss proxy for VIT API benchmark have save base on CVPR: 
+AutoFM_CVPR2022_API_5_7M.json
+
+change path api json for --api
+```bash
+cd DSS_proxy_CVPR2022
+bash compute_dss_proxy_CVPR.sh
+or 
+python compute_dss_proxy.py --data-path '/home/tuanvovan/MeCo/zero-cost-nas/ZiCo/dataset/imagenet' --gp \
+ --change_qk --relative_position --dist-eval --cfg './experiments/search_space/space-T.yaml' --output_dir './OUTPUT/search' --api path_to_CVPR_api --save-result-json './json_dss_proxy_CVPR.json'
+```
+
+2. Compute dss proxy for VIT API benchmark have save base on AAAI: 
+AutoFM_AAAI24_API.json
+
+change path api json for --api
+```bash
+cd DSS_proxy_CVPR2022
+bash compute_dss_proxy_AAAI_24.sh
+or 
+python compute_dss_proxy.py --data-path '/home/tuanvovan/MeCo/zero-cost-nas/ZiCo/dataset/imagenet' --gp \
+ --change_qk --relative_position --dist-eval --cfg './experiments/search_space/space-T.yaml' --output_dir './OUTPUT/search' --api path_to_AAAI24_api --save-result-json './json_dss_proxy_AAAI24.json'
+
+
+
+```
+
+
 ## Reference
 
 Our code is based on [MeCO](https://github.com/HamsterMimi/MeCo).
