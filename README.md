@@ -91,12 +91,10 @@ python accross_specific_architecture_torch.py
 can get the result json saved at here: https://sutdapac-my.sharepoint.com/:f:/g/personal/vovan_tuan_sutd_edu_sg/EkEO5RQtDt5PrsUpbxzldJ8BXlhEiOeNVSiTUCj9er-nFw?e=MGHniT
 ### Experiments on AutoFM
 
-
-Get architecture and test-accuracy save as API:
-
 Dowloading the pretrained Autoformer Supernet at here: https://drive.google.com/drive/folders/1HqzY3afqQUMI6pJ5_BgR2RquJU_b_3eg
 
 1. Following CVPR22 paper:
+Get architecture and test-accuracy save as API:
 
 Change your Imanget1k path with --data-path 
 ```bash
@@ -110,7 +108,9 @@ python -m torch.distributed.launch --nproc_per_node=2 --use_env evolution.py --d
 The API with archtecture and accuracy saved at --path-save-api './AutoFM_CVPR2022_API_5_7M.json' --num-net 1000
 
 Compute meco, meco_opt, meco_revised based oh API have saved: './AutoFM_CVPR2022_API_5_7M.json'
-change 'meco', 'meco_opt' or 'meco_revise' for --zero-cost . 
+
+Change 'meco', 'meco_opt' or 'meco_revise' for --zero-cost .
+
 Noted: For the compute meco, we can't compute meco for 1000 in one process (will crash memory). Therefore we need split 125 architecture for each process, change --start and --end (0,125), (125,250), ... , (875,1000)
 ```bash
 cd AutoFormer
@@ -122,7 +122,35 @@ python evolution_meco.py --data-path '/home/tuanvovan/MeCo/zero-cost-nas/ZiCo/da
 ```
 
 The result json will saved at './AutoFM_CVPR_results.json'
-2. Foll
+
+2. 1. Following AAAI24 paper:
+Get architecture and test-accuracy save as API:
+Change your Imanget1k path with --data-path 
+```bash
+cd AutoFormer
+bash search_API_based_AAAI24.sh
+or 
+python -m torch.distributed.launch --nproc_per_node=2 --use_env evolution.py --data-path '/home/tuanvovan/MeCo/zero-cost-nas/ZiCo/dataset/imagenet' --gp \
+--change_qk --relative_position --dist-eval --cfg ./experiments/supernet/supernet-AAAI.yaml --resume ./supernet-tiny.pth \
+--min-param-limits 1 --param-limits 12 --data-set EVO_IMNET --path-save-api './AutoFM_AAAI24_API.json' --num-net 500
+```
+The API with archtecture and accuracy saved at --path-save-api './AutoFM_AAAI24_API.json' --num-net 500
+
+Compute meco, meco_opt, meco_revised based oh API have saved: './AutoFM_AAAI24_API.json'
+
+change 'meco', 'meco_opt' or 'meco_revise' for --zero-cost . 
+
+Noted: For the compute meco, we can't compute meco for 500 in one process (will crash memory). Therefore we need split 125 architecture for each process, change --start and --end (0,125), (125,250), ... , (375,500)
+```bash
+cd AutoFormer
+bash compute_meco_AAAI.sh
+or 
+#!/bin/bash
+python evolution_meco.py --data-path '/home/tuanvovan/MeCo/zero-cost-nas/ZiCo/dataset/imagenet' --gp \
+--change_qk --relative_position --dist-eval --cfg ./experiments/supernet/supernet-AAAI.yaml --resume ./supernet-tiny.pth \
+--min-param-limits 1 --param-limits 12 --data-set EVO_IMNET --api './AutoFM_AAAI24_API.json' --zero-cost 'meco' --start 0 --end 125 --save-json './AutoFM_AAAI24_results.json'
+```
+The result json will saved at './AutoFM_AAAI24_results.json'
 ## Reference
 
 Our code is based on [MeCO](https://github.com/HamsterMimi/MeCo).
