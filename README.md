@@ -29,8 +29,7 @@ cd zero-cost-nas
 
 python NAS_Bench_201.py --dataset 'cifar10/cifar100/ImageNet16-120'
 ```
-
-
+can get the json result saved at here: https://sutdapac-my.sharepoint.com/:f:/g/personal/vovan_tuan_sutd_edu_sg/EkEO5RQtDt5PrsUpbxzldJ8BXlhEiOeNVSiTUCj9er-nFw?e=MGHniT
 
 
 ### Experiments on MobileNet OFA
@@ -60,6 +59,7 @@ python mobilenet_OFA_eval_correlation_imagnet_1k_for_API.py
 
 
 3. Compute correlation Meco score and Test-Accuracy and save json Meco value for MobileNet OFA on ImageNet1k:
+can get API with net setting and test-accuracy at here: https://sutdapac-my.sharepoint.com/:f:/g/personal/vovan_tuan_sutd_edu_sg/EjromH0Fu2BNvbE8Zc5OfvYBNsOGDQ2RjIKa3QLTuTsyfQ?e=O7ZDci
 set path dataset, path api and path save json in mobilenet_OFA_eval_correlation_imagenet_1k.py as:
 ```bash
 path_data_imagenet = '/home/tuanvovan/MeCo/zero-cost-nas/ZiCo/dataset/imagenet'
@@ -76,6 +76,7 @@ python mobilenet_OFA_eval_correlation_imagnet_1k_load_computemoce_opt.py
 ###mece revised
 python mobilenet_OFA_eval_correlation_imagnet_1k_load_computemoce_revised.py
 ```
+can get the result json saved at here: https://sutdapac-my.sharepoint.com/:f:/g/personal/vovan_tuan_sutd_edu_sg/EgwTYBEsXF9DhHmvdSp0_GMB7ws4P41dgblUS8oGDLHKIg?e=p33WcT
 
 4. Save json Meco value for accross architecture design (MobileNetv2,Resnet18,Efficientnet-B0,ViT,MaxVit) on ImageNet1k:
 set path dataset and path save json in accross_specific_architecture_torch.py as:
@@ -87,7 +88,7 @@ path_save_json = "/home/tuanvovan/MeCo/zero-cost-nas/save_data.json"
 cd zero-cost-nas
 python accross_specific_architecture_torch.py
 ```
-
+can get the result json saved at here: https://sutdapac-my.sharepoint.com/:f:/g/personal/vovan_tuan_sutd_edu_sg/EkEO5RQtDt5PrsUpbxzldJ8BXlhEiOeNVSiTUCj9er-nFw?e=MGHniT
 ### Experiments on AutoFM
 
 
