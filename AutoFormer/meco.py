@@ -1202,3 +1202,98 @@ def get_score_gradoffeature_input_random_result(net, x, target, device, split_da
 #         print(e)
 #         meco = np.nan, None
 #     return meco
+
+def get_score_Meco_8x8_opt_weight_result_trans_emd(net, x, target, device, split_data):
+    result_list = []
+    meco_layers = []
+    eigen_layers = []
+    layer_shape_C = []
+    def forward_hook(module, data_input, data_output):
+        # print('---day')
+        fea = data_output[0].detach()
+        try:
+            fea = fea.reshape(fea.shape[1], -1)
+        except:
+            fea = fea.reshape(fea.shape[0], -1)
+        random_indices_8_a = torch.randperm(fea.shape[0])[:8]  # Get 8 random indices
+        random_tensor_8_a_fea = fea[random_indices_8_a]
+        corr = torch.corrcoef(random_tensor_8_a_fea)
+        # print(corr.shape)
+        corr[torch.isnan(corr)] = 0
+        corr[torch.isinf(corr)] = 0
+        values = torch.linalg.eig(corr)[0]
+        # result = np.real(np.min(values)) / np.real(np.max(values))
+        result = (fea.shape[0]/8)*torch.min(torch.real(values))
+        result_list.append(result)
+        meco_layers.append(result.item())
+        eigen_layers.append(torch.real(values).tolist())
+        layer_shape_C.append((fea.shape[0],fea.shape[1]))
+        # print(layer_shape_C)
+
+    for name, modules in net.named_modules():
+        modules.register_forward_hook(forward_hook)
+
+
+
+    N = x.shape[0]
+    for sp in range(split_data):
+        st = sp * N // split_data
+        en = (sp + 1) * N // split_data
+        y = net(x[st:en])
+    
+    results = torch.tensor(result_list)
+    results = results[torch.logical_not(torch.isnan(results))]
+    v = torch.sum(results)
+    result_list.clear()
+    return v.item(),meco_layers,eigen_layers,layer_shape_C
+def get_score_Meco_revised_result_matmul_weight_trans_embedding(net, x, target, device, split_data,m):
+    result_list = []
+    meco_layers = []
+    eigen_layers = []
+    layer_shape_C = []
+    def forward_hook(module, data_input, data_output):
+        # print('---day')
+        fea = data_output[0].detach()
+        try:
+            fea = fea.reshape(fea.shape[1], -1)
+        except:
+            fea = fea.reshape(fea.shape[0], -1)
+        # random_indices_8_a = torch.randperm(fea.shape[0])[:8]  # Get 8 random indices
+        # random_tensor_8_a_fea = fea[random_indices_8_a]
+        fea_centered = fea - torch.mean(fea,dim=1,keepdim=True)
+        l2_norm = torch.clamp(torch.norm(fea_centered,p=2,dim=1),min=1e-8)
+        feanorm = fea_centered/l2_norm.unsqueeze(-1)
+        gram = torch.matmul(feanorm,feanorm.t())
+        gram[torch.isnan(gram)] = 0
+
+        simi_sums = torch.sum(torch.abs(gram),dim=1)
+        _,fea_index = torch.sort(simi_sums,descending=False)
+        fea_index = fea_index[:m]
+        gram = gram[fea_index][:,fea_index]
+
+        
+        values = torch.linalg.eig(gram)[0]
+        # result = np.real(np.min(values)) / np.real(np.max(values))
+        result = (fea.shape[0]/m)*torch.min(torch.real(values))
+        result_list.append(result)
+        meco_layers.append(result.item())
+        eigen_layers.append(torch.real(values).tolist())
+        layer_shape_C.append((fea.shape[0],fea.shape[1]))
+        # print(layer_shape_C)
+
+    for name, modules in net.named_modules():
+        modules.register_forward_hook(forward_hook)
+
+
+
+    N = x.shape[0]
+    for sp in range(split_data):
+        st = sp * N // split_data
+        en = (sp + 1) * N // split_data
+        y = net(x[st:en])
+    
+    results = torch.tensor(result_list)
+    results = results[torch.logical_not(torch.isnan(results))]
+    v = torch.sum(results)
+    result_list.clear()
+    return v.item(),meco_layers,eigen_layers,layer_shape_C
