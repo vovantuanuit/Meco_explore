@@ -174,8 +174,10 @@ python compute_dss_proxy.py --data-path '/home/tuanvovan/MeCo/zero-cost-nas/ZiCo
 ```
 The compted dss proxy result json can get at here: https://sutdapac-my.sharepoint.com/:f:/g/personal/vovan_tuan_sutd_edu_sg/EicFu3XR8U9Asg0Ytr5Zg5YBXR-1H7qG86riv7if8YV2_w?e=bkb52j
 
+
 **Compute Auto-A proxy in AAAI-24 paper on AutoFormer CVPR search space:**
-hange path api json for --api
+
+change path api json for --api
 ```bash
 cd DSS_proxy_CVPR2022
 bash compute_AutoProxA_proxy_CVPR.sh.sh
