@@ -18,6 +18,7 @@ from meco import *
 import json
 from scipy import stats
 import json
+import copy
 
 
 def decode_cand_tuple(cand_tuple):
@@ -610,7 +611,7 @@ def main(args):
                 measures, meco_layers,eigen_layers,layer_shape_C,_ = get_score_Meco_result_ident_zero(model_module, x, y, device,1)
             elif args.zero_cost == 'meco_opt':
                 measures, meco_layers,eigen_layers,layer_shape_C = get_score_Meco_8x8_opt_weight_result(model_module, x, y, device,1)
-             elif args.zero_cost == 'meco_revised': #summation
+            elif args.zero_cost == 'meco_revised': #summation
                 measures, meco_layers,eigen_layers,layer_shape_C = get_score_Meco_revised_result_matmul(model_module, x, y, device,1,args.m)
             del model_module
             torch.cuda.empty_cache()
@@ -624,9 +625,9 @@ def main(args):
             infor_mecos = {}
             infor_mecos['net_setting'] = v['net_setting']
             infor_mecos['meco'] = measures
-            infor_mecos['moce_layers'] = meco_layers
-            infor_mecos['eigen_list_layer'] = eigen_layers
-            infor_mecos['layers_shape'] = layer_shape_C
+            infor_mecos['meco_layers'] = copy.deepcopy(meco_layers)
+            infor_mecos['eigen_list_layer'] = copy.deepcopy(eigen_layers)
+            infor_mecos['layers_shape'] = copy.deepcopy(layer_shape_C)
             infor_mecos['test-accuracy'] = v['test-accuracy']
             
             list_infor_mecos[i] = infor_mecos
@@ -645,7 +646,7 @@ def main(args):
             # if i % 25 == 0:
             #     with open('./autoFM_1k_computeMeco_125_250.json', "w") as file:  # Open file in binary write mode
             #         json.dump(list_infor_mecos, file)
-    save_json_name = arfs.save_json.replace('.json',str(args.start)+'_'+str(args.end)+str(args.zero_cost)+'.json')
+    save_json_name = args.save_json.replace('.json',str(args.start)+'_'+str(args.end)+str(args.zero_cost)+'.json')
     with open(save_json_name, "w") as file:  # Open file in binary write mode
         json.dump(list_infor_mecos, file)
     spearman_corr = stats.spearmanr(mecos,accs)
